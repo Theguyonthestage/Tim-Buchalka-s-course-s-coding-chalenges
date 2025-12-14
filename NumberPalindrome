@@ -25,11 +25,20 @@ public class Main {
         System.out.println(isPalindrome(11212));
     }
     public static boolean isPalindrome(int number){
-        int reverse = 0 ;
-        
-        if (reverse==number){
-            return true;
+        int original = number;
+        int reverse=0;
+        int remainder = 0;
+        if (number<0){
+            number*=-1;
         }
-        else return false;
+        while (number>0){
+            remainder= number%10;
+            reverse = remainder + reverse*10;
+            number /= 10;
+        }
+        if (original<0){
+            reverse*=-1;
+        }
+        return original==reverse;
     }
 }
