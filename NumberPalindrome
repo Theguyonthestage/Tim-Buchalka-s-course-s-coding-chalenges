@@ -24,21 +24,22 @@ public class Main {
         System.out.println(isPalindrome(707));
         System.out.println(isPalindrome(11212));
     }
-    public static boolean isPalindrome(int number){
+
+    public static boolean isPalindrome(int number) {
         int original = number;
-        int reverse=0;
+        int reverse = 0;
         int remainder = 0;
-        if (number<0){
-            number*=-1;
+        if (number < 0) {
+            number *= -1;
         }
-        while (number>0){
-            remainder= number%10;
-            reverse = remainder + reverse*10;
+        while (number > 0) {
+            remainder = number % 10;
+            reverse = remainder + reverse * 10;
             number /= 10;
         }
-        if (original<0){
-            reverse*=-1;
+        if (original < 0) {
+            reverse *= -1;
         }
-        return original==reverse;
+        return original == reverse;
     }
 }
