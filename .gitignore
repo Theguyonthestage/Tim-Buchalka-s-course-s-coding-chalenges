@@ -1,2 +1,12 @@
+# IDE files
 .idea/
 *.iml
+
+# Compiled output
+out/
+build/
+target/
+
+# System files
+.DS_Store
+Thumbs.db
