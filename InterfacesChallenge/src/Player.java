@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Player implements ISaveable{
+public class Player implements ISaveable {
 
     private String playerName;
     private int playerHealth;
@@ -17,9 +17,14 @@ public class Player implements ISaveable{
 
     @Override
     public void read(ArrayList<String> values) {
+        if (values == null || values.size() < 3) {
+            System.out.println("Not enough values inputted.");
+            return;
+        }
         setPlayerName(values.get(0));
         setPlayerHealth(Integer.parseInt(values.get(1)));
         setPlayerWeapon(values.get(2));
+
     }
 
     public Player(String playerName, int playerHealth, String playerWeapon) {
@@ -27,6 +32,7 @@ public class Player implements ISaveable{
         this.playerHealth = playerHealth;
         this.playerWeapon = playerWeapon;
     }
+
     @Override
     public String toString() {
         return "Player{" +
@@ -35,6 +41,7 @@ public class Player implements ISaveable{
                 ", weapon='" + playerWeapon + '\'' +
                 '}';
     }
+
     public String getPlayerName() {
         return playerName;
     }

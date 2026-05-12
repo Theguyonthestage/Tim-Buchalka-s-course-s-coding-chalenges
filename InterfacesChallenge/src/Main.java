@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 // Create a simple interface (tip: name it Saveable or ISaveable)
 // That interface allows an object to be saved to some sort of storage medium. (tip: use arraylist)
 // The exact type of medium is not known to the interface (nor to the classes that implement it).
@@ -23,12 +26,67 @@
 // There is a whole Java I/O section later in the course where you will get to use files, etc.
 public class Main {
     public static void main(String[] args) {
-        //Write your code here
-    }
-    public static void saveObject(ISaveable objectToSave){
-        objectToSave.write();
-        for(String value : someArrayList){
+        Player player = new Player("Daniel", 100, "Sword");
+        Monster monster = new Monster("Goblin", 30, "Bite");
 
+        saveObject(player);
+        saveObject(monster);
+
+        // 1. Create a Player and save it (should print its current values)
+        Player player1 = new Player("Daniel", 100, "Sword");
+        System.out.println("Player before save:");
+        System.out.println(player1);          // toString in action
+        saveObject(player1);                   // simulate "saving" to disk
+
+        // 2. Load new values into the same player from user input
+        System.out.println("\nLoading new player values...");
+        loadObject(player1);
+        System.out.println("Player after load:");
+        System.out.println(player1);
+
+        // 3. Repeat for Monster
+        Monster monster1 = new Monster("Goblin", 30, "Bite");
+        saveObject(monster1);
+        loadObject(monster1);
+        System.out.println(monster1);
+
+    }
+
+    public static void saveObject(ISaveable objectToSave) {
+        ArrayList<String> valuesToSave = objectToSave.write();
+        for (String value : valuesToSave) {
+            System.out.println(value);
         }
     }
+
+    public static void loadObject(ISaveable objectToLoad) {
+        objectToLoad.read(readValues());
+    }
+
+    public static ArrayList<String> readValues() {
+        ArrayList<String> values = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+        int index = 0;
+        System.out.println("Choose:\n" +
+                "\t 1 to enter a value\n" +
+                "\t 0 to quit");
+        while (!quit) {
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 0:
+                    quit = true;
+                    break;
+                case 1:
+                    System.out.print("Enter a value: ");
+                    values.add(index, scanner.nextLine());
+                    index++;
+                    break;
+            }
+        }
+        return values;
+    }
+
 }

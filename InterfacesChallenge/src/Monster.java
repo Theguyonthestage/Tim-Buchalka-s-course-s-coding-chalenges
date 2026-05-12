@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Monster implements ISaveable{
+public class Monster implements ISaveable {
     private String monsterName;
     private int monsterHealth;
     private String monsterAttack;
@@ -47,6 +47,10 @@ public class Monster implements ISaveable{
 
     @Override
     public void read(ArrayList<String> values) {
+        if (values == null || values.size() < 3) {
+            System.out.println("Not enough values inputted.");
+            return;
+        }
         setMonsterName(values.get(0));
         setMonsterHealth(Integer.parseInt(values.get(1)));
         setMonsterAttack(values.get(2));
