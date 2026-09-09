@@ -56,15 +56,23 @@ public class Main {
 
         String stringData = "Darwin Brisbane Perth Melbourne Canberra Adelaide Sydney Canberra";
 
-        String [] data = stringData.split(" ");
+        String[] data = stringData.split(" ");
 
         LinkedList list = new LinkedList();
-        for (String s : data){
+        for (String s : data) {
             Node node = new Node(s);
             list.addItem(node);
         }
         list.printAll();
+        BinarySearchTree tree = new BinarySearchTree();
+        for (String s : data){
+            Node node = new Node(s);
+            tree.addItem(node);
+        }
+        System.out.println("=========");
+        tree.printInOrder();
     }
+
 
 
 }

@@ -9,35 +9,47 @@ public class BinarySearchTree {
         this.root = root;
     }
 
-    public void addItem(ListItem itemToAdd){
-        if (root==null){
-            root=itemToAdd;
+    public void addItem(ListItem itemToAdd) {
+        if (root == null) {
+            root = itemToAdd;
             return;
         }
         ListItem current = root;
-        while (true){
-            if (itemToAdd.compareTo(current) == 0 ){
+        while (true) {
+            if (itemToAdd.compareTo(current) == 0) {
                 return;
             }
-            if (itemToAdd.compareTo(current)<0){
-                if (current.moveToPrevious()==null){
+            if (itemToAdd.compareTo(current) < 0) {
+                if (current.moveToPrevious() == null) {
                     current.setPrevious(itemToAdd);
                     return;
                 } else {
                     current = current.moveToPrevious();
                 }
-            }
-            else if (itemToAdd.compareTo(current)>0){
-                if (current.moveToNext()==null){
+            } else if (itemToAdd.compareTo(current) > 0) {
+                if (current.moveToNext() == null) {
                     current.setNext(itemToAdd);
                     return;
                 } else {
-                    current=current.moveToNext();
+                    current = current.moveToNext();
                 }
             }
         }
 
+    }
+
+    private void printInOrder(ListItem current) {
+        if (current == null) {
+            return;
+        }
+        printInOrder(current.moveToPrevious());
+        System.out.println(current.getValue());
+        printInOrder(current.moveToNext());
 
 
+    }
+
+    public void printInOrder() {
+        printInOrder(getRoot());
     }
 }
